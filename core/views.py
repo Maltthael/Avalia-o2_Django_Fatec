@@ -23,11 +23,15 @@ def logout(request):
     return redirect("home")
 
 
-def registrar_link(request):
+
+def cadastrar(request):
     if request.method == "POST":
+        form = LinkModel(request.POST)
         if form.is_valid():
+            return render(request, "forms.html")
             form.save()
-            return redirect("index")
+    else:
+        return redirect("index")
 
 
 @login_required
