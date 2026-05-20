@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from core.forms import LoginForm, CadastroLink
+from .models import LinkModel
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 
@@ -38,6 +39,10 @@ def cadastrar_link(request):
         form = CadastroLink()
     return render(request, 'forms.html', {'form': form, 'titulo_pagina': 'Cadastrar link'})
 
+
+def listar_link(request):
+    links = LinkModel.objects.all()
+    return render(request, 'listar_link.html', {'links': links, 'titulo_pagina': 'lista de links'})
 
 @login_required
 def home(request):

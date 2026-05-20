@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Listando link</h1>
+    <a href="{% url 'index' %}">Voltar para o menu</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Link</th>
+                <th>Observação</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for link in links %}
+            <tr>
+                <td>{{ link.titulo }}</td>
+                <td>{{ link.link }}</td>
+                <td>{{ link.observacao }}</td>
+                <td>
+                    <a href="#">✏️ Editar</a> | 
+                    <a href="#">❌ Deletar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">Nenhum link cadastrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+
+</body>
+</html>
