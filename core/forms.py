@@ -3,6 +3,22 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
+from .models import LinkModel
+
+
+
+class CadastroLink(forms.ModelForm):
+    class Meta:
+        model = LinkModel
+        fields = ('titulo', 'link', 'observacao')
+        labels = {
+            'titulo':'Titulo',
+            'link': 'link',
+            'observacao': 'Observacao',
+        }
+
+
+
 
 
 class LoginForm(ModelForm):
