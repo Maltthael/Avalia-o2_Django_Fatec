@@ -44,6 +44,23 @@ def listar_link(request):
     links = LinkModel.objects.all()
     return render(request, 'listar_link.html', {'links': links, 'titulo_pagina': 'lista de links'})
 
+
+
+
+
+def deletar_link(request, id):
+    link = get_object_or_404(LinkModel, pk=id)
+    if request.method == "POST":
+        link.delete()
+        return redirect("listar_link")
+    return redirect('listar_link')
+
+def editar_link(request):
+    link = get_object_or_404(LinkModel, pk=id)
+    if request.method == "POST":
+        link
+        return redirect("forms.html")
+
 @login_required
 def home(request):
     context = {}
