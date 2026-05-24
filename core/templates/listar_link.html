@@ -5,29 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
 </head>
 
 <body>
-    <h1>Listando link</h1>
-    <a href="{% url 'index' %}">Voltar para o menu</a>
-    <table border="1">
+    <h1 class="mb-5">Listando link</h1>
+   
+    <a href="{% url 'index' %}">
+        <button type="submit" class="mb-3 btn btn-info">Voltar ao menu</button>
+    </a>
+    <table border="1" class="table table-striped-columns">
         <thead>
             <tr>
                 <th>Título</th>
                 <th>Link</th>
                 <th>Observação</th>
+                <th>Ações</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody >
             {% for link in links %}
             <tr>
                 <td>{{ link.titulo }}</td>
                 <td>{{ link.link }}</td>
                 <td>{{ link.observacao }}</td>
                 <td>
-                    <form action = "{% url 'deletar_link' link.id %}" method='post'>
+                    <a href="{% url 'editar_link' link.id %}">
+                        <button type="button" class="btn btn-warning mb-2">✏️ Editar</button>
+                    </a>
+                    <form action="{% url 'deletar_link' link.id %}" method='post'>
                         {% csrf_token %}
-                        <button type="submit">❌ Deletar</button>
+                        <button type="submit"class="btn btn-danger">❌ Deletar</button>
                     </form>
                 </td>
             </tr>
@@ -41,6 +50,7 @@
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
 </body>
 

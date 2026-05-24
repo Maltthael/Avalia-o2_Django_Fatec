@@ -8,7 +8,7 @@ urlpatterns = [
     path('index/', home, name='index'),
     path('cadastrar_link/', cadastrar_link, name='cadastrar_link'),
     path('listar_link/', listar_link, name='listar_link'),
-    path('editar/<int:id>/', editar_link, name='editar_link'),
+    path('editar_link/<int:id>/', editar_link, name='editar_link'),
     path('deletar_link/<int:id>/', deletar_link, name='deletar_link'),
     path('', home, name='home')
 ]

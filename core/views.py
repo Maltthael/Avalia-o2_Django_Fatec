@@ -15,10 +15,6 @@ def login(request):
         context = {'acesso_negado': True}
         return render(request, 'login.html', {'form':form})
     return render(request, 'login.html', {'form':LoginForm()})
-
-
-
-
         
 def logout(request):
     if request.method == "POST":
@@ -55,11 +51,18 @@ def deletar_link(request, id):
         return redirect("listar_link")
     return redirect('listar_link')
 
-def editar_link(request):
+
+
+def editar_link(request, id):
     link = get_object_or_404(LinkModel, pk=id)
     if request.method == "POST":
-        link
-        return redirect("forms.html")
+        form = CadastroLink(request.POST, instance=link)
+        if form.is_valid():
+            form.save()
+            return redirect("listar_link")
+    else:
+        form = CadastroLink(instance=link)
+    return render(request, 'forms.html', {'form': form, 'titulo_pagina': 'Editar Link'})
 
 @login_required
 def home(request):
